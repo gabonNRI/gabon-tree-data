@@ -1,6 +1,5 @@
-hello <- function()
+hello <-
+function()
 {
   return ("Hello world")
 }
-
-
