@@ -1,25 +1,25 @@
-\name{Gabon Tree Data-package}
-\alias{Gabon Tree Data-package}
-\alias{Gabon Tree Data}
+\name{gabontreedata-package}
+\alias{gabontreedata-package}
+\alias{gabontreedata}
 \docType{package}
 \title{
-\packageTitle{Gabon Tree Data}
+\packageTitle{gabontreedata}
 }
 \description{
-\packageDescription{Gabon Tree Data}
+\packageDescription{gabontreedata}
 }
 \details{
 
 The DESCRIPTION file:
-\packageDESCRIPTION{Gabon Tree Data}
-\packageIndices{Gabon Tree Data}
+\packageDESCRIPTION{gabontreedata}
+\packageIndices{gabontreedata}
 ~~ An overview of how to use the package, including the most important ~~
 ~~ functions ~~
 }
 \author{
-\packageAuthor{Gabon Tree Data}
+\packageAuthor{gabontreedata}
 
-Maintainer: \packageMaintainer{Gabon Tree Data}
+Maintainer: \packageMaintainer{gabontreedata}
 }
 \references{
 ~~ Literature or other references for background information ~~
