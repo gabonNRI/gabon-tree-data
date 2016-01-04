@@ -9,7 +9,7 @@ testPayload <- function() {
 }
 receiveHeightsPayload <- function(json) {
   library(jsonlite)
-  args = fromJSON(json, simplifyDataFrame = TRUE)
+  args = fromJSON(json)
   computeHeights(args)
 }
 computeHeights <-
