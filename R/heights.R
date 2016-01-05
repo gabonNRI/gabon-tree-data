@@ -19,7 +19,7 @@ computeHeights <-
  #   trees.str = '"tag1",30.4, 399
  #"tag2", 42, 100'
 #    frame = read.csv(text=trees.str, header=FALSE)
-    colnames(frame) <- c("tag", "diameter", "calculated_height" )
+    colnames(frame) <- c("tag", "diameter", "actual_height" )
     result = heightRegression(frame)
   }
 
