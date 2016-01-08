@@ -4,7 +4,7 @@ heightRegression <- function (df) {
   df
 }
 testPayload <- function() {
-  json = '[{"tag": "tag1", "diameter": 30.4, "calculatedHeight": 409}]'
+  json = '[{"tag": "tag1", "diameter": 30.4, "actual_height": 409}]'
   receiveHeightsPayload(json)
 }
 receiveHeightsPayload <- function(json) {
@@ -15,7 +15,7 @@ receiveHeightsPayload <- function(json) {
 computeHeights <-
   function(frame)
   {
-    
+    hello()
  #   trees.str = '"tag1",30.4, 399
  #"tag2", 42, 100'
 #    frame = read.csv(text=trees.str, header=FALSE)
