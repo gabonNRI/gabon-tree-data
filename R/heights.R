@@ -1,5 +1,5 @@
 
-heightRegression <- function (df) {
+heightRegression2 <- function (df) {
   df$height <- 42
   df
 }
