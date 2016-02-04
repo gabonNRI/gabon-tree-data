@@ -27,8 +27,7 @@ BAfun <- function(D){0.00007854*D^2 * 10000}
 
 ####################################################
 
-heightRegression <- function(tag, diameter, actual_height, sub_dat, E_Value){
-  
+heightRegression <- function(tag, diameter, actual_height, E_Value){  
   # hdat, sub.dat, E_Value, computer, prt
   #Right now, it is passing a list of comma separated values with
   #"tag", "diameter", "actual_height" and calls a dummy function
@@ -38,8 +37,7 @@ heightRegression <- function(tag, diameter, actual_height, sub_dat, E_Value){
   Ht_act <- actual_height
   D <- diameter
   n <- length(Ht_act)
-  E_Value <- E_Value
-  
+
   ##### Calculating RSD for Uncertainty & Organizing Output
   
   results.fun <- function (fit, equation, Ht_act, D, error, PredHt, coef){
@@ -863,16 +861,18 @@ heightRegression <- function(tag, diameter, actual_height, sub_dat, E_Value){
   rnum <- paste("res", gsub("[^[:digit:]]", "", AIC_best.fit), sep="")
   res_fin <- get(rnum)
   
-  predht.fun <- function(res, sub_dat){
+  predht.fun <- function(res, D){
     a <- res$vars["a"]
     b <- res$vars["b"]
     c <- res$vars["c"]
     d <- res$vars["d"]
-    equ.fun <- function(D) eval(parse(text = res$equ))
-    ph <- equ.fun(sub_dat$D)
+    equ.fun <- function(D) {
+      eval(parse(text = res$equ))
+      }
+    ph <- equ.fun(D)
   }
   
-  predht <- predht.fun(res = res_fin, sub_dat)
+  predht <- predht.fun(res = res_fin, D)
   full.list <- res_fin
   full.list$predht <- predht
   full.list
