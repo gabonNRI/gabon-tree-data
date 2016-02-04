@@ -34,9 +34,10 @@ heightRegression <- function(tag, diameter, actual_height, E_Value){
   #called heightRegression that sets the "height" of the returned
   # values to 42
   
-  Ht_act <- actual_height
-  D <- diameter
+  Ht_act <- as.numeric(actual_height)
+  D <- as.numeric(diameter)
   n <- length(Ht_act)
+  E_Value <- as.numeric(E_Value)
 
   ##### Calculating RSD for Uncertainty & Organizing Output
   
