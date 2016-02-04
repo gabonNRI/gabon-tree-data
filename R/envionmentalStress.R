@@ -4,10 +4,11 @@ require(ncdf4)
 
 ## This assumes upload of a file called "gpsdata.csv"
 
-gps.dat.file <- read.csv("~/repos/gabontreedata/R/gpsdata.csv", header = T, stringsAsFactors = F)
-coord = compute_evals_code(gps.dat.file)
-write.csv(coord, "Evals_151214.csv")
-
+testLocal = function() {
+  gps.dat.file <- read.csv("~/repos/gabontreedata/R/gpsdata.csv", header = T, stringsAsFactors = F)
+  coord = compute_evals_code(gps.dat.file)
+  write.csv(coord, "Evals_151214.csv")
+}
 ### Accepts a dataframe with Longitude, Latitude, Code.  Assumes that the data
 ### is for a principle plot, however, it will compute for any NW corner (0,0) coordinates.
 compute_evals_code = function(gps.dat) {
