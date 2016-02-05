@@ -21,5 +21,9 @@ computeHeights <-
                        row["E_Value"])
       }
     )
+    result = result$'1'
+    result["equation"] = Reduce(paste, deparse(result$equation))
+    result
   }
 
+autorun <- testPayload()
