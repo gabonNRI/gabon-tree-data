@@ -33,7 +33,9 @@ heightRegression <- function(tag, diameter, actual_height, E_Value){
   #"tag", "diameter", "actual_height" and calls a dummy function
   #called heightRegression that sets the "height" of the returned
   # values to 42
-  
+  if (missing(diameter) || missing(tag) || missing(E_Value)) {
+    stop("missing parameters")
+  }
   Ht_act <- as.numeric(actual_height)
   D <- as.numeric(diameter)
   n <- length(Ht_act)
