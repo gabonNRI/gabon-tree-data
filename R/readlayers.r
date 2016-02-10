@@ -35,6 +35,7 @@ retrieve_raster=function(filename,coord,plot=F,format="nc"){
   if(format=='bil') zipurl = paste(zipurl,"/",filename,".bil.zip",sep="")
   # Read the raster file in netCDF format from 
   # http://chave.ups-tlse.fr/pantropical_allometry.htm
+  print(zipurl);
   DEMzip <- download.file(zipurl, destfile = "zipdir")
   unzip("zipdir", exdir = "unzipdir")
   nam=paste("unzipdir/",filename,".nc",sep="")

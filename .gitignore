@@ -2,6 +2,8 @@
 .Rhistory
 .Rapp.history
 
+zipdir
+unzipdir
 # Example code in package build process
 *-Ex.R
 .DS_Store
