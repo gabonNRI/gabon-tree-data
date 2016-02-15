@@ -34,6 +34,6 @@ compute_evals_code = function(frame) {
   coord <- as.data.frame(coord)
   coord$Evals <- Evals
   coord$Plot.Code <- frame$Code
-  coord$id <- frame$id  
+  coord$mongoid <- frame$id  
   coord
 }
