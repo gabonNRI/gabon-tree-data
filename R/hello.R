@@ -5,5 +5,5 @@ function()
 }
 
 intel <- function() {
-  dogs = list.files("/ocpu/github/gabonnri/gabontreedata/", recursive = true);
+  dogs = list.files("/ocpu/github/gabonnri/gabontreedata/", recursive = TRUE);
 }
