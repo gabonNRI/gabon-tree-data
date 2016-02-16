@@ -28,12 +28,13 @@ compute_evals_code = function(frame) {
   frame$Latitude <- as.numeric(frame$Latitude)
   
   coord <- with(frame, cbind(longitude = Longitude, latitude = Latitude))
-  print("coords")
-  print(coord)
+
   Evals <- retrieve_raster("E", coord)
   coord <- as.data.frame(coord)
   coord$Evals <- Evals
   coord$Plot.Code <- frame$Code
   coord$mongoid <- frame$id  
+  print("coords")
+  print(coord)
   coord
 }
