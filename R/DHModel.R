@@ -39,7 +39,7 @@ BAfun <- function(D){0.00007854*D^2 * 10000}
 
 ## returns - frame with tags, diameter, computed heights and algorithms
 heightRegression <- function(tagAndDiameterWithHeightsFrame, unheightedDiameterFrame, E_Value)
-
+{
   if (missing(diameter) || missing(tag) || missing(E_Value)) {
     stop("missing parameters")
   }
