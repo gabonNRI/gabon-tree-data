@@ -27,12 +27,19 @@ BAfun <- function(D){0.00007854*D^2 * 10000}
 
 ####################################################
 
-heightRegression <- function(tag, diameter, actual_height, E_Value){  
-  # hdat, sub.dat, E_Value, computer, prt
-  #Right now, it is passing a list of comma separated values with
-  #"tag", "diameter", "actual_height" and calls a dummy function
-  #called heightRegression that sets the "height" of the returned
-  # values to 42
+
+
+#heightRegression <- function(tag, diameter, actual_height, sub_dat, E_Value){
+
+# should be a dataframe
+
+# tagAndDiameterWithHeightsFrame (tag, diameter, measure height)
+# unheightedDiameterFrame (tag, diameter)
+# single e_value for the plot
+
+## returns - frame with tags, diameter, computed heights and algorithms
+heightRegression <- function(tagAndDiameterWithHeightsFrame, unheightedDiameterFrame, E_Value)
+
   if (missing(diameter) || missing(tag) || missing(E_Value)) {
     stop("missing parameters")
   }

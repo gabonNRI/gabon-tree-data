@@ -1,44 +1,39 @@
+# Sample function that simulates a JSON payload that takes three arguments:
+
+# tagAndDiameterWithHeightsFrame (tag, diameter, measure height)
+# unheightedDiameterFrame (tag, diameter)
+# single e_value for the plot
+
+# and returns a frame with calculated heights and the algorithm used to compute it.
+# returnFrame (tag, diameter, calculatedHeight, algorithm)
 testPayload <- function() {
-  json = '[{"tag": "tag1", "diameter": 30.4, "actual_height1": 90, "E_Value": -0.5},
-          {"tag": "tag2", "diameter": 20.4,  "E_Value": -0.6},
-  {"tag": "tag3",  "E_Value": -0.6},
- {"tag": "tag3",  "diameter": 20.4}
-  ]'
-  receiveHeightsPayload(json)
+  tagAndDiameterWithHeightsJSON = '[{"tag": "tag1", "diameter": 30.4, "measured_height": 90 },
+    {"tag": "tag2", "diameter": 25.4, "measured_height": 70 },
+    {"tag": "tag3", "diameter": 20.4, "measured_height": 60 }
+    ]'
+  unheightedDiameterJSON = '[{"tag": "tag4", "diameter": 32.4 },
+    {"tag": "tag5", "diameter": 35.4 },
+    {"tag": "tag6", "diameter": 40.4 }
+    ]'
+  eValue = -.5
+  receiveHeightsPayload(tagAndDiameterWithHeightsJSON, unheightedDiameterJSON, eValue)
 }
-receiveHeightsPayload <- function(json) {
+receiveHeightsPayload <- function(tagAndDiameterWithHeightsJSON, unheightedDiameterJSON, eValue) {
   library(jsonlite)
-  args = fromJSON(json)
-  computeHeights(args)
+  tagAndDiameterWithHeightsFrame = fromJSON(tagAndDiameterWithHeightsJSON)
+  unheightedDiameterFrame = fromJSON(unheightedDiameterJSON)
+  
+  computeHeights(tagAndDiameterWithHeightsFrame, unheightedDiameterFrame, eValue )
+
 }
 
 computeHeights <-
-  function(frame)
+  function(tagAndDiameterWithHeightsFrame, unheightedDiameterFrame, eValue)
   {
-    result = apply(frame, 1, function(frameRow) {
-      print(frameRow)
-      tag = frameRow["tag"]
-      height = as.numeric(frameRow["actual_height"])
-      diameter = as.numeric(frameRow['diameter'])
-      eValue = as.numeric(frameRow["E_Value"])
-      rowResult = frame()
-      if (! is.finite(height)) { height = 0 }
-      if (! is.finite(diameter) || ! is.finite(eValue)) {
-        rowResult$tag = tag
-      }
-      else {
-        regression = heightRegression(tag, diameter, 
-                         height, 
-                         eValue)
-  
-        rowResult$predictedHeight = regression$predht
-        rowResult$tag = tag
-      }
-      rowResult
-      }
-     
-    )
-    result
+    unheightedDiameterFrame$calculatedHeight = 42
+    unheightedDiameterFrame$algorithm = "answer to life the universe and everything"
+    unheightedDiameterFrame
+
   }
 
 autorun <- testPayload()
