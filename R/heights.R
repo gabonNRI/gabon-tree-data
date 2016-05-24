@@ -22,17 +22,30 @@ receiveHeightsPayload <- function(tagAndDiameterWithHeightsJSON, unheightedDiame
   library(jsonlite)
   tagAndDiameterWithHeightsFrame = fromJSON(tagAndDiameterWithHeightsJSON)
   unheightedDiameterFrame = fromJSON(unheightedDiameterJSON)
-  
-  computeHeights(tagAndDiameterWithHeightsFrame, unheightedDiameterFrame, eValue )
 
+  computeHeights(tagAndDiameterWithHeightsFrame, unheightedDiameterFrame, eValue)
+ 
+  
 }
 
 computeHeights <-
   function(tagAndDiameterWithHeightsFrame, unheightedDiameterFrame, eValue)
   {
-    unheightedDiameterFrame$calculatedHeight = 42
-    unheightedDiameterFrame$algorithm = "answer to life the universe and everything"
-    unheightedDiameterFrame
+    fit <- heightfit(hdat = tagAndDiameterWithHeightsFrame,
+                     sub.dat = unheightedDiameterFrame,
+                     E_Value = eValue)
+    unheightedDiameterFrame$Ht <- fit$predht
+    
+    DiameterHeightFrame <- unheightedDiameterFrame
+    DH_vars <- fit$vars
+    DH_equation <- formula(paste("y ~ ", fit$Xequ, sep = ""))
+    #DH_equ2 <- substitute(expr = DH_equation, list(a = DH_vars[1], b = DH_vars[2]))
+    DH_equ3 <- gsub("a", round(DH_vars[1], 3), DH_equation)
+    DH_equ3 <- gsub("b", round(DH_vars[2], 3), DH_equ3)
+    DH_equ3 <- gsub("c", round(DH_vars[3], 3), DH_equ3)
+    DH_equ3 <- gsub("d", round(DH_vars[4], 3), DH_equ3)
+    DH_equ3 <- formula(paste("y ~ ", DH_equ3[3], sep = ""))
+    
 
   }
 
