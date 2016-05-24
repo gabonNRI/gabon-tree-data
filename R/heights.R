@@ -7,13 +7,13 @@
 # and returns a frame with calculated heights and the algorithm used to compute it.
 # returnFrame (tag, diameter, calculatedHeight, algorithm)
 testPayload <- function() {
-  tagAndDiameterWithHeightsJSON = '[{"tag": "tag1", "diameter": 30.4, "measured_height": 90 },
-    {"tag": "tag2", "diameter": 25.4, "measured_height": 70 },
-    {"tag": "tag3", "diameter": 20.4, "measured_height": 60 }
+  tagAndDiameterWithHeightsJSON = '[{"Tag": "tag1", "D": 30.4, "HMean": 90 },
+    {"Tag": "tag2", "D": 25.4, "HMean": 70 },
+    {"Tag": "tag3", "D": 20.4, "HMean": 60 }
     ]'
-  unheightedDiameterJSON = '[{"tag": "tag4", "diameter": 32.4 },
-    {"tag": "tag5", "diameter": 35.4 },
-    {"tag": "tag6", "diameter": 40.4 }
+  unheightedDiameterJSON = '[{"tag": "tag4", "D": 32.4 },
+    {"Tag": "tag5", "D": 35.4 },
+    {"Tag": "tag6", "D": 40.4 }
     ]'
   eValue = -.5
   receiveHeightsPayload(tagAndDiameterWithHeightsJSON, unheightedDiameterJSON, eValue)

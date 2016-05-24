@@ -8,9 +8,9 @@ rmse <- function(error){
 #### Calculate AIC from residual sum
 
 AIC_RSS <- function(n, k, error){
-
   ##AIC = n * ln(RSS/n) + 2k + C,  the constant C can be ignored.
   AIC_fit <- (n * log(mean(error^2)) + 2*k) }
+
 
 #### Calculate RSE (Residual standard error): sqrt(SSE/(n-p)), i.e., sqrt(RSS/df), where n = sample size, p = numbers of parameters, df=degree of freedom
 rse <- function(error, n, p){
@@ -772,7 +772,9 @@ heightfit <- function(hdat, sub.dat, E_Value){
         AIC_min <- eval(parse(text=paste("AIC_Eq", k, sep="")))
         AIC.df[k,] <- c(Equ = paste("Eq", k, sep=""), AIC = round(AIC_min, 1))
         AIC_min <- min(AIC_min, AIC_min_temp)
-        if (AIC_min < AIC_min_temp) {AIC_best.fit <- paste("Eq", k, sep="")}
+        if (! is.nan(AIC_min) && !is.nan(AIC_min_temp) ) {
+          if ( AIC_min < AIC_min_temp) {AIC_best.fit <- paste("Eq", k, sep="")}
+        }
         AIC_min_temp = AIC_min
 
         }
@@ -789,11 +791,12 @@ heightfit <- function(hdat, sub.dat, E_Value){
  # pltname <- gsub('([[:punct:]])|\\s+','_',Plot_name)
  # data_labels <- data.frame(time = c(20), value = c(0.95*max(Hmean)), label = pltname)
 
-  gp <- plot.fun(res = res.fin, hdat = hdat)
-   print(gp)
-    pdf(file = paste("HDgraph", ".pdf", sep=""), width = 4, height = 4)
-     print(gp)
-      dev.off()
+   ## Disable plotting
+#   gp <- plot.fun(res = res.fin, hdat = hdat)
+#    print(gp)
+#     pdf(file = paste("HDgraph", ".pdf", sep=""), width = 4, height = 4)
+#      print(gp)
+#       dev.off()
 
 
  predht.fun <- function(res, sub.dat){
