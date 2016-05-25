@@ -11,7 +11,7 @@ testPayload <- function() {
     {"Tag": "tag2", "D": 25.4, "HMean": 70 },
     {"Tag": "tag3", "D": 20.4, "HMean": 60 }
     ]'
-  unheightedDiameterJSON = '[{"tag": "tag4", "D": 32.4 },
+  unheightedDiameterJSON = '[{"Tag": "tag4", "D": 32.4 },
     {"Tag": "tag5", "D": 35.4 },
     {"Tag": "tag6", "D": 40.4 }
     ]'
@@ -23,13 +23,13 @@ receiveHeightsPayload <- function(tagAndDiameterWithHeightsJSON, unheightedDiame
   tagAndDiameterWithHeightsFrame = fromJSON(tagAndDiameterWithHeightsJSON)
   unheightedDiameterFrame = fromJSON(unheightedDiameterJSON)
 
-  computeHeights(tagAndDiameterWithHeightsFrame, unheightedDiameterFrame, eValue)
- 
+  answer = computeHeights(tagAndDiameterWithHeightsFrame, unheightedDiameterFrame, eValue)
+  toJSON(answer)
   
 }
 
 computeHeights <-
-  function(tagAndDiameterWithHeightsFrame, unheightedDiameterFrame, eValue)
+  function(tagAndDiameterWithHeightsFrame, unheightedDiameterFrame, eValue = -0.059)
   {
     fit <- heightfit(hdat = tagAndDiameterWithHeightsFrame,
                      sub.dat = unheightedDiameterFrame,
@@ -45,6 +45,12 @@ computeHeights <-
     DH_equ3 <- gsub("c", round(DH_vars[3], 3), DH_equ3)
     DH_equ3 <- gsub("d", round(DH_vars[4], 3), DH_equ3)
     DH_equ3 <- formula(paste("y ~ ", DH_equ3[3], sep = ""))
+    payload <- list(unheightedDiameterFrame, 
+                    Reduce(paste, deparse(DH_equation, width.cutoff = 500)), 
+                    Reduce(paste, deparse(DH_equ3, width.cutoff = 500)))
+    
+    payload
+    
     
 
   }
