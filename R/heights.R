@@ -9,6 +9,13 @@ library(BIOMASS)
 # returnFrame (tag, diameter, calculatitudeedHeight, algorithm)
 
 # This payload represents NRI_P005 
+testPayloadSimple <- function() {
+  D <- 10:99
+  WD <- runif(length(D), min = 0.1, max = 1)
+  H <- D^(2/3)
+  # If you have height data
+  AGB <- computeAGB(D,WD,H)
+}
 testPayload <- function() {
   tagAndDiameterWithHeightsJSON = '
 [ {  "Tag": "3407", "D": 40.8, "H": 15.4, "latitude": -2.84330555555556, "longitude": 11.57453, "WD": 0.21059999999999998 },
