@@ -1,4 +1,4 @@
-library(BIOMASS)
+require(BIOMASS)
 # Sample function that simulatitudees a JSON payload that takes three arguments:
 
 # tagAndDiameterWithHeightsFrame (tag, diameter, measure height)
