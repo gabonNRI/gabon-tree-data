@@ -288,3 +288,4 @@ computeHeights <-
   }
 
 autorun <- testPayload()
+simple <- testPayloadSimple()
