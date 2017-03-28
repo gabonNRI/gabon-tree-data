@@ -1,16 +1,10 @@
-require("BIOMASS")
-# Sample function that simulatitudees a JSON payload that takes three arguments:
-
-# tagAndDiameterWithHeightsFrame (tag, diameter, measure height)
-# unheightedDiameterFrame (tag, diameter)
-# single e_value for the plot
-
-# and returns a frame with calculatitudeed heights and the algorithm used to compute it.
-# returnFrame (tag, diameter, calculatitudeedHeight, algorithm)
-
+library('devtools')
+install_github("BIOMASSR/BIOMASS")
+library("BIOMASS")
+# Sample function that simulates a JSON payload that takes three arguments:
 # This payload represents NRI_P005 
 testPayloadSimple <- function() {
-  D <- 10:99
+  D <- 10:19
   WD <- runif(length(D), min = 0.1, max = 1)
   H <- D^(2/3)
   # If you have height data
@@ -18,6 +12,7 @@ testPayloadSimple <- function() {
 }
 testPayload <- function() {
   tagAndDiameterWithHeightsJSON = '
+{ "latitude": -2.8433055556, "longitude": 11.57453, "trees": 
 [ {  "Tag": "3407", "D": 40.8, "H": 15.4, "latitude": -2.84330555555556, "longitude": 11.57453, "WD": 0.21059999999999998 },
  {  "Tag": "3408", "D": 14.6, "H": 6.8, "latitude": -2.84330555555556, "longitude": 11.57453, "WD": 0.40890000000000004 },
   {  "Tag": "3409", "D": 14.5, "H": 5.6, "latitude": -2.84330555555556, "longitude": 11.57453, "WD": 0.915 },
@@ -57,7 +52,7 @@ testPayload <- function() {
   {  "Tag": "3523", "D": 30.6, "H": 16, "latitude": -2.84330555555556, "longitude": 11.57453, "WD": 0.21059999999999998 },
   {  "Tag": "3529", "D": 30.5, "H": 16, "latitude": -2.84330555555556, "longitude": 11.57453, "WD": 0.21059999999999998 },
   {  "Tag": "3530", "D": 29.5, "H": 16.8, "latitude": -2.84330555555556, "longitude": 11.57453, "WD": 0.21059999999999998 }
-]'
+]}'
  
 foo = '[{ "Tag": "3424",  "D": 11.2,  "latitude": -2.84330555555556,  "longitude": 11.57453,  "WD": 0.553 },
   { "Tag": "3425",  "D": 10.6,  "latitude": -2.84330555555556,  "longitude": 11.57453,  "WD": 0.553 },
@@ -250,11 +245,13 @@ foo = '[{ "Tag": "3424",  "D": 11.2,  "latitude": -2.84330555555556,  "longitude
 receiveHeightsPayload <- function(tagAndDiameterWithHeightsJSON, eValue) {
   library(jsonlite)
   tagAndDiameterWithHeightsFrame = fromJSON(tagAndDiameterWithHeightsJSON)
+  #print(tagAndDiameterWithHeightsFrame)
   #unheightedDiameterFrame = fromJSON(unheightedDiameterJSON)
-  latitude = -2.84330555555556
-  longitude= 11.57453
+  latitude = tagAndDiameterWithHeightsFrame$latitude
+  longitude = tagAndDiameterWithHeightsFrame$longitude
   coordinates = cbind(longitude, latitude)
-  answer = computeAGB(tagAndDiameterWithHeightsFrame$D, tagAndDiameterWithHeightsFrame$WD, tagAndDiameterWithHeightsFrame$H, coordinates)
+  #answer = tagAndDiameterWithHeightsFrame
+  answer = computeAGB(tagAndDiameterWithHeightsFrame$trees$D, tagAndDiameterWithHeightsFrame$trees$WD, tagAndDiameterWithHeightsFrame$trees$H, coordinates)
   #answer = computeHeights(tagAndDiameterWithHeightsFrame, unheightedDiameterFrame, eValue)
   toJSON(answer)
   
