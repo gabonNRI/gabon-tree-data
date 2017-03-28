@@ -7,7 +7,7 @@ install.packages("BIOMASS", repos = "https://cran.opencpu.org", method = "libcur
 
 # Sample function that simulates a JSON payload that takes three arguments:
 # This payload represents NRI_P005 
-testPayloadSimple <- function() {
+testPayloadSimple1 <- function() {
   D <- 10:19
   WD <- runif(length(D), min = 0.1, max = 1)
   H <- D^(2/3)
