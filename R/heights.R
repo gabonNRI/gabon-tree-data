@@ -1,8 +1,8 @@
 library('devtools')
-install_github("BIOMASSR/BIOMASS")
-install('BIOMASS')
-require('BIOMASS')
-library("BIOMASS")
+#install_github("BIOMASSR/BIOMASS")
+#install('BIOMASS')
+#require('BIOMASS')
+#library("BIOMASS")
 install.packages("BIOMASS", repos = "https://cran.opencpu.org", method = "libcurl")
 
 # Sample function that simulates a JSON payload that takes three arguments:
