@@ -1,7 +1,8 @@
 # History files
 .Rhistory
 .Rapp.history
-
+E/
+E_zip
 zipdir
 unzipdir
 # Example code in package build process
