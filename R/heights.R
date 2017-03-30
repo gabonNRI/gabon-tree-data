@@ -1,7 +1,7 @@
 library('devtools')
 #install_github("BIOMASSR/BIOMASS")
 #install('BIOMASS')
-#library(BIOMASS)
+library(BIOMASS)
 #
 #install.packages(BIOMASS)
 #install.packages("BIOMASS", repos = "https://cran.opencpu.org", method = "libcurl")
