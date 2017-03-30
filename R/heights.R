@@ -3,7 +3,7 @@ library('devtools')
 #install('BIOMASS')
 #require('BIOMASS')
 #
-install.packages("BIOMASS")
+install.packages(BIOMASS)
 #install.packages("BIOMASS", repos = "https://cran.opencpu.org", method = "libcurl")
 library(BIOMASS)
 
