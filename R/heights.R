@@ -1,7 +1,7 @@
 library('devtools')
 #install_github("BIOMASSR/BIOMASS")
 #install('BIOMASS')
-library(BIOMASS)
+#library(BIOMASS)
 #
 #install.packages(BIOMASS)
 #install.packages("BIOMASS", repos = "https://cran.opencpu.org", method = "libcurl")
@@ -14,7 +14,7 @@ testPayloadSimple <- function() {
   WD <- runif(length(D), min = 0.1, max = 1)
   H <- D^(2/3)
   # If you have height data
-  AGB <- computeAGB(D,WD,H)
+  AGB <- BIOMASS::computeAGB(D,WD,H)
 }
 testPayload <- function() {
   tagAndDiameterWithHeightsJSON = '
@@ -82,7 +82,7 @@ receiveHeightsPayload <- function(tagAndDiameterWithHeightsJSON, eValue) {
 computeHeightsWithBiomass <- function(measurements, latitude, longitude, eValue) {
   coordinates = cbind(longitude, latitude)
   #answer = tagAndDiameterWithHeightsFrame
-  agb = computeAGB(measurements$D, measurements$WD, measurements$H, coordinates)
+  agb = BIOMASS::computeAGB(measurements$D, measurements$WD, measurements$H, coordinates)
   measurements$AGB = agb
   measurements
 }
