@@ -5,8 +5,8 @@ library('devtools')
 #
 install.packages("BIOMASS")
 #install.packages("BIOMASS", repos = "https://cran.opencpu.org", method = "libcurl")
-library("BIOMASS")
-require(BIOMASS)
+library(BIOMASS)
+
 # Sample function that simulates a JSON payload that takes three arguments:
 # This payload represents NRI_P005 
 testPayloadSimple <- function() {
