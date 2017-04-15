@@ -10,10 +10,10 @@ retrieveWoodDensityTester <- function () {
     {  "plot": "NRI_P005", "genus": "Ricinodendron", "species": "heudelotii", "family": "Euphorbiaceae" }
   ]'
   library(jsonlite)
-  frame = fromJSON(json)
+  trees=fromJSON(json)
   plot = "NRI_P005"
   
-  retrieveWoodDensity(trees=frame, plot=plot)
+  retrieveWoodDensity(trees, plot=plot)
 } 
 
 
