@@ -13,11 +13,12 @@ retrieveWoodDensityTester <- function () {
   frame = fromJSON(json)
   plot = "NRI_P005"
   
-  retrieveWoodDensity(frame, plot)
+  retrieveWoodDensity(trees=frame, plot=plot)
 } 
 
-library(BIOMASS)
+
 retrieveWoodDensity <- function(trees, plot) {
+  library(BIOMASS)
   wd = BIOMASS::getWoodDensity(genus=trees$genus, species=trees$species, family=trees$family, region="AfricaTrop", stand=trees$plot )
   wd
 }
