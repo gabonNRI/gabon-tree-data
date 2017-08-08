@@ -5,7 +5,8 @@ require(ncdf4)
 ## This assumes upload of a file called "gpsdata.csv"
 testEnvStress <- function() {
   json = '[{"Longitude": "9.34106", "Latitude": 0.58583, "Code": "NRI_001", "id": "01"},
-          {"Longitude": "9.32992", "Latitude": 0.57147, "Code": "NRI_002", "id": "02"}
+          {"Longitude": "9.32992", "Latitude": 0.57147, "Code": "NRI_002", "id": "02"},
+          { "Latitude": -3.37647222222222, "Longitude": 11.72433, "Code": "NRI_P005"}
   ]'
   testEnvStressJson(json)
 }
