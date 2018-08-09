@@ -10,23 +10,23 @@ computePlotSpecificHeights <- function(measurements) {
 
   # Compute models for each stand
 
-  HDmod.log1 <- with(dat, modelHD(D = diameter, H = actual_height, method = "log1", useWeight = F),
+  HDmod.log1 <- with(dat, BIOMASS::modelHD(D = diameter, H = actual_height, method = "log1", useWeight = F),
                      simplify = F)
     log1 <- HDmod.log1$RSE
 
-  HDmod.log2 <- with(dat, modelHD(D = diameter, H = actual_height, method = "log2", useWeight = F),
+  HDmod.log2 <- with(dat, BIOMASS::modelHD(D = diameter, H = actual_height, method = "log2", useWeight = F),
                    simplify = F)
     log2 <- HDmod.log2$RSE
 
-  HDmod.log3 <- with(dat, modelHD(D = diameter, H = actual_height, method = "log3", useWeight = F),
+  HDmod.log3 <- with(dat, BIOMASS::modelHD(D = diameter, H = actual_height, method = "log3", useWeight = F),
                    simplify = F)
     log3 <- HDmod.log3$RSE
 
-  HDmod.wb <- with(dat, modelHD(D = diameter, H = actual_height, method = "weibull", useWeight = F),
+  HDmod.wb <- with(dat, BIOMASS::modelHD(D = diameter, H = actual_height, method = "weibull", useWeight = F),
                  simplify = F)
     weibull <- HDmod.wb$RSE
 
-  HDmod.mch <- with(dat, modelHD(D = diameter, H = actual_height, method = "michaelis", useWeight = F),
+  HDmod.mch <- with(dat, BIOMASS::modelHD(D = diameter, H = actual_height, method = "michaelis", useWeight = F),
                   simplify = F)
     michaelis <- HDmod.mch$RSE
 
@@ -47,11 +47,11 @@ computePlotSpecificHeights <- function(measurements) {
    Hmod.list <- list() 
    
     if(length(meth) > 0){
-      Hmod <- with(dat, modelHD(D = diameter, H = actual_height, method = meth, useWeight = F))
-       Hlocal <- with(dat, retrieveH(D = diameter, model = Hmod))
-        Hloc <- Hlocal$H
-         HtRSE <- Hlocal$RSE
-        Hcoef <- Hmod$coefficients[,1]
+      Hmod   <- with(dat, BIOMASS::modelHD(D = diameter, H = actual_height, method = meth, useWeight = F))
+      Hlocal <- with(dat, retrieveH(D = diameter, model = Hmod))
+      Hloc   <- Hlocal$H
+      HtRSE  <- Hlocal$RSE
+      Hcoef  <- Hmod$coefficients[,1]
         
         if(meth == "michaelis"){
           fmla <- paste("H ~ (", round(Hcoef[1], 2), " * D) / (", round(Hcoef[2], 2), "+ D)", sep = "")
@@ -79,14 +79,14 @@ computePlotSpecificHeights <- function(measurements) {
     
     if(length(meth) == 0){
       Hlocal <- with(dat, retrieveH(D = diameter, region = "CAfrica"))
-       Hloc <- Hlocal$H
-        HtRSE <- Hlocal$RSE
-         fmla <- paste("H ~ 50.453 * (1 - exp(-0.0471*D*0.8120))", sep = "")
+      Hloc <- Hlocal$H
+      HtRSE <- Hlocal$RSE
+      fmla <- paste("H ~ 50.453 * (1 - exp(-0.0471*D*0.8120))", sep = "")
     }
 
-   Hmod.list$tag <- dat$tag
+    Hmod.list$tag      <- dat$tag
     Hmod.list$diameter <- dat$diameter 
-     Hmod.list$PredHt <- Hloc
-      Hmod.list$RSE <- HtRSE
-       Hmod.list$formula <- fmla
+    Hmod.list$PredHt   <- Hloc
+    Hmod.list$RSE      <- HtRSE
+    Hmod.list$formula  <- fmla
 }
