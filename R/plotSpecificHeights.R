@@ -8,7 +8,7 @@ computePlotSpecificHeights <- function(measurements) {
   
   dat = fromJSON(measurements)
   ## Step 1 - Calculate best height model for each stand
-  dat
+  "stephen test"
 }
   # Compute models for each stand
 
