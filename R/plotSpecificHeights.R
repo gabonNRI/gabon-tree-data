@@ -84,6 +84,6 @@ computePlotSpecificHeights <- function(measurements) {
   Hmod.list$PredHt   <- Hloc
   Hmod.list$RSE      <- HtRSE
   Hmod.list$formula  <- fmla
-  toJSON(Hmod)
-
+  
+  Hmod
 }
