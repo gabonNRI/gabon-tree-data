@@ -6,7 +6,6 @@ computePlotSpecificHeights <- function(dat) {
 
   # dat <- read.csv("nri-p005-trees.csv", header = T, na.string = "null" )
   library(BIOMASS)
-  library(jsonlite)
 
   ## Step 1 - Calculate best height model for each stand
   # Compute models for each stand
