@@ -83,5 +83,5 @@ computePlotSpecificHeights <- function(dat) {
   Hmod.list$RSE      <- HtRSE
   Hmod.list$formula  <- fmla
   
-  formula
+  return Hmod.list
 }
