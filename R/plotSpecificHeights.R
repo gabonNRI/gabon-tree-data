@@ -1,6 +1,3 @@
-
-
-
 computePlotSpecificHeights <- function(dat) {
   # {data: [ {  "Tag": "3407", "D": 40.8, "MH": 15.4, EH: <result> }], function: <string function>}
 
