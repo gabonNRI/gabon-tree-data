@@ -1,4 +1,5 @@
 # fetch wood density for a batch of trees using the biomass package.
+library(BIOMASS)
 
 retrieveWoodDensityTester <- function () {
   json = '
@@ -17,9 +18,15 @@ retrieveWoodDensityTester <- function () {
 
 
 retrieveWoodDensity <- function(trees) {
-  library(BIOMASS)
-  wd = BIOMASS::getWoodDensity(genus=trees$genus, species=trees$species, family=trees$family, region="AfricaTrop", stand=trees$plot )
-  wd
+  Taxo <- correctTaxo(genus = trees$genus, species = trees$species)
+  trees$GenusCorr <- Taxo$genusCorrected
+  trees$SppCorr <- Taxo$speciesCorrected
+  APG <- getTaxonomy(trees$GenusCorr, findOrder = T)
+  trees$familyAPG <- APG$family
+
+  wd = getWoodDensity(genus=trees$GenusCorr, species=trees$SppCorr,
+          family=trees$family, region="AfricaTrop", stand=trees$plot)
+  wd$meanWD
 }
 
 autoWD = retrieveWoodDensityTester()
