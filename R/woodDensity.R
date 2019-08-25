@@ -26,7 +26,7 @@ retrieveWoodDensity <- function(trees) {
 
   wd = getWoodDensity(genus=trees$GenusCorr, species=trees$SppCorr,
           family=trees$family, region="AfricaTrop", stand=trees$plot)
-  wd$meanWD
+  wd
 }
 
 autoWD = retrieveWoodDensityTester()
